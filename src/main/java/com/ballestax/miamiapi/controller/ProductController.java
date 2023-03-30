@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "https://miamibeachmaicao.netlify.app")
 @RequestMapping("/api/products")
 public class ProductController {
 
