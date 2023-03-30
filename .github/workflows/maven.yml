@@ -28,7 +28,7 @@ jobs:
         cache: maven
 
     - name: Stop running application
-      run: if sudo lsof -i :80; then sudo lsof -i :80 | awk 'NR!=1 {print $2}' | xargs sudo kill -9; else echo "No se esta ejecutando ninguna aplicacion en el puerto 80"; fi
+      run: if sudo lsof -i :443; then sudo lsof -i :443 | awk 'NR!=1 {print $2}' | xargs sudo kill -9; else echo "No se esta ejecutando ninguna aplicacion en el puerto 443"; fi
 
     - name: Cache the Maven packages to speed up build
       uses: actions/cache@v1
