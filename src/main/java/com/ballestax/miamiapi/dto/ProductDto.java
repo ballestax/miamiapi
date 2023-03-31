@@ -15,6 +15,7 @@ public class ProductDto {
     private String location;
     private String image;
     private BigDecimal price;
+    private boolean enabled;
     private List<Presentation> presentations;
 
 }
