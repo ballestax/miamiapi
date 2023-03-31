@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://miamibeachmaicao.netlify.app")
-@RequestMapping("/api/categories")
+@CrossOrigin(origins = {"https://miamibeachmaicao.netlify.app", "https://miamibeachriohacha.netlify.app"})
+@RequestMapping("/categories")
 public class CategoryController {
 
     private CategoryService categoryService;

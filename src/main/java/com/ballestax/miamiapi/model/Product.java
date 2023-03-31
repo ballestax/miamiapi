@@ -22,7 +22,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "code", nullable = false, unique = true)
@@ -42,6 +42,9 @@ public class Product {
 
     @Column(name = "enabled")
     private boolean enabled;
+
+    @Column(name = "location")
+    private long location;
 
     @OneToMany(mappedBy = "product")
     @JsonManagedReference

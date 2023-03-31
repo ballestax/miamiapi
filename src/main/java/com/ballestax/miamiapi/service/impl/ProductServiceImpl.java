@@ -1,10 +1,13 @@
 package com.ballestax.miamiapi.service.impl;
 
 
+import com.ballestax.miamiapi.dto.ProductDto;
 import com.ballestax.miamiapi.exception.ResourceNotFoundException;
+import com.ballestax.miamiapi.mapper.ProductMapper;
 import com.ballestax.miamiapi.model.Product;
 import com.ballestax.miamiapi.repository.ProductRepository;
 import com.ballestax.miamiapi.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +17,9 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductMapper mapper;
 
     public ProductServiceImpl(ProductRepository productRepository) {
         super();
@@ -26,9 +32,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProducts() {
+    public List<ProductDto> getAllProducts() {
         return productRepository.findAll()
                 .stream()
+                .map(product -> mapper.entityToDto(product))
                 .collect(Collectors.toList());
     }
 
@@ -37,6 +44,14 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id)
                 .orElseThrow(()->
                 new ResourceNotFoundException("Product", "id", id));
+    }
+
+    @Override
+    public List<ProductDto> getProductsByLocation(Long id) {
+        return productRepository.findAllByLocation(id)
+                .stream()
+                .map(product -> mapper.entityToDto(product))
+                .collect(Collectors.toList());
     }
 
     @Override
